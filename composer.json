@@ -1,0 +1,16 @@
+{
+    "name": "trismegiste/phpunit-assert-solid",
+    "description": "solid",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Trismegiste"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Trismegiste\\Assert\\Solid\\": "src/"
+        }
+    },
+    "require": {}
+}
