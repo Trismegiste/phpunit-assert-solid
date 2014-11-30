@@ -32,4 +32,12 @@ trait LiskovSubstitutionPrinciple
         }
     }
 
+    protected function assertNoViolation($fqcn)
+    {
+        // no instanceof
+        // no is_subclass
+        // use_trait
+        // no method_exist...
+    }
+
 }

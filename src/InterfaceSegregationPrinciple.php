@@ -7,7 +7,7 @@
 namespace Trismegiste\Assert\Solid;
 
 /**
- * InterfaceSegregationPrinciple is an implementation of assertions for SOLID compliance
+ * InterfaceSegregationPrinciple is an implementation of assertions for ISP
  */
 trait InterfaceSegregationPrinciple
 {
@@ -21,6 +21,11 @@ trait InterfaceSegregationPrinciple
 
         $this->assertEquals(count(get_class_methods($inheritFqcn)), $methodCount, "Some methods from class $inheritFqcn are not declared in "
                 . implode(', ', $motherFqcn));
+    }
+
+    protected function assertNoMethodOutsideContract($fqcn)
+    {
+        // each method has a declaring class from above
     }
 
 }
