@@ -3,7 +3,7 @@
          colors="true">
 
     <testsuites>
-        <testsuite name="SolidAnalyzer">
+        <testsuite name="Assertion">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

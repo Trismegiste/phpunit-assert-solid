@@ -1,10 +1,13 @@
 {
     "name": "trismegiste/phpunit-assert-solid",
-    "description": "solid",
+    "description": "Assert your SOLID compliance and coding good pratices in unit tests",
     "license": "MIT",
+    "type": "library",
+    "keywords": ["phpunit", "assert", "solid", "analyzer"],
     "authors": [
         {
-            "name": "Trismegiste"
+            "name": "Trismegiste",
+            "homepage": "https://github.com/Trismegiste"
         }
     ],
     "autoload": {
@@ -12,5 +15,8 @@
             "Trismegiste\\Assert\\Solid\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "php": ">=5.4",
+        "nikic/php-parser": "1.0.*"
+    }
 }

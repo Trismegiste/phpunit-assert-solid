@@ -4,7 +4,7 @@ Don't remind others the SOLID compliance, do it programatically
 ## When
 
 Today is the day your programer's life has changed ! You're tired to endlessly remind
-your team/github-users to follow SOLID principles ? Now it's over.
+your team/github-users to follow SOLID principles and Demeter's Law ? Now it's over.
 
 ## What
 
@@ -27,10 +27,10 @@ problem (specially with soft-typed language like PHP). Sometime those analyzers
 detects false negative so you can't put strict assertions based on those analyzers reports.
 
 Besides, in pratice no one need a strict SOLID compliance for the whole project.
-Sometimes you break a rule because you don't care. Sometimes, you break a rule because
-of speed/memory optimization. Sometimes you break a rule because you don't
-want to over-engineer objects (less is more). 
-And sometimes, you break a rule because you forget it.
+Sometime you break a rule because you don't care. Sometime, you break a rule because
+of speed/memory optimization. Sometime you break a rule because you don't
+want to over-engineer objects (less is more). And sometime, you break a rule 
+because you forget it.
 
 This tool is made for that.
 
@@ -41,8 +41,8 @@ In the unit tests. So you're sure some simple assertions are checked.
 ## Who
 
 You decide how, how much and when one of your class must
-follow one SOLID guidance. It does cover all guidances but those assertions
-detects recurrent anti-patterns which could appear after many commits
+follow one SOLID guidance. It does not cover all guidances but those assertions
+detect recurrent anti-patterns which could appear after many commits
 from others until you discover it is too late. 
 
 ## Examples Please !
@@ -51,3 +51,19 @@ Of course
 ```php
 
 ```
+
+## FAQ
+
+### How does it work ?
+It uses Reflection and also nikic/PHPParser. This is the main advantage to integrate this
+tool into unit tests, because you have autoloading and it runs within a project
+unlike a static code analyzer.
+
+### Is it efficient ?
+For performance issue, this tool can make assertions at the class level, not the
+whole project level so some SOLID principle cannot be completely asserted, it's 
+not magic. The goal is to avoid bad pratices to pollute an originally well-coded source.
+
+### But you cannot prevent someone to remove one of your assertion ?
+That's right, but the git-blame will show you who has knowingly removed it. It's
+much easier to track so ignorance is no longer an excuse.
