@@ -24,4 +24,9 @@ class SimpleTest extends PHPUnit_Framework_TestCase
         $this->assertNoMethodWithoutContract('BadProject\Case2');
     }
 
+    public function testSmallApi()
+    {
+        $this->assertSmallApi('BadProject\Case3');
+    }
+
 }

@@ -34,4 +34,15 @@ trait GoodPractice
         self::assertThat($fqcn, self::hasNoMethodWithoutContract(), $msg);
     }
 
+    // 3
+    public static function isSmallApi($n = 5)
+    {
+        return new Assert\SmallApi($n);
+    }
+
+    public static function assertSmallApi($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, self::isSmallApi(), $msg);
+    }
+
 }

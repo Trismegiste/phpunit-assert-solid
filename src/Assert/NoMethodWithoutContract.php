@@ -20,7 +20,7 @@ class NoMethodWithoutContract extends \PHPUnit_Framework_Constraint
      */
     public function toString()
     {
-        return 'class only implement methods previously declared in interfaces';
+        return 'class implements only methods previously declared in interfaces';
     }
 
     /**

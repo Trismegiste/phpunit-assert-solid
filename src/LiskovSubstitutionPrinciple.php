@@ -26,17 +26,7 @@ trait LiskovSubstitutionPrinciple
         // no method_exist...
     }
 
-    /**
-     * Asserts if methods are declared without a contract (or a base class)
-     * 
-     * @param string $fqcn
-     * @param string $exceptionPattern regexp for exception (default: all magic methods)
-     */
-    protected function assertNoMethodOutsideContract($fqcn, $exceptionPattern = '#^__#')
-    {
-        // each method has a declaring class from above
-    }
-
+  
     /**
      * Asserts if no objects are passed as method arguments without a type-hint
      * (not stricly related to LSP but same spirit)
