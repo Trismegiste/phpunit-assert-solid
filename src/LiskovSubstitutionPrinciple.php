@@ -13,16 +13,6 @@ namespace Trismegiste\SolidAssert;
 trait LiskovSubstitutionPrinciple
 {
 
-    public static function isInterfaceHintedParameter()
-    {
-        return new Assert\InterfaceHintedParameter();
-    }
-
-    public static function assertInterfaceHintedParameter($fqcn, $msg = '')
-    {
-        self::assertThat($fqcn, self::isInterfaceHintedParameter(), $msg);
-    }
-
     /**
      * Asserts if there is no use of evil practices that breaks LSP
      * 

@@ -9,7 +9,7 @@ namespace BadProject;
 class Case1
 {
 
-    public function concreteParam(\stdClass $obj)
+    protected function concreteParam(\stdClass $obj)
     {
         
     }
