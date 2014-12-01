@@ -15,7 +15,7 @@ trait LiskovSubstitutionPrinciple
 
     public static function isInterfaceHintedParameter()
     {
-        return new \Trismegiste\SolidAssert\Assert\InterfaceHintedParameter();
+        return new Assert\InterfaceHintedParameter();
     }
 
     public static function assertInterfaceHintedParameter($fqcn)

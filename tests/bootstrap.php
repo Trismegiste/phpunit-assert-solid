@@ -9,5 +9,5 @@ if (!$loader = @include __DIR__ . '/../vendor/autoload.php') {
             'php composer.phar install --dev' . PHP_EOL);
 }
 
-$loader->addPsr4('tests\Trismegiste\Assert\Solid\\', __DIR__, true);
+$loader->addPsr4('tests\Trismegiste\SolidAssert\\', __DIR__, true);
 $loader->addPsr4('BadProject\\', __DIR__ . '/fixtures', true);

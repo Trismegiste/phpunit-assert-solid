@@ -14,4 +14,9 @@ class Case1
         
     }
 
+    public function okParam(\Iterator $it)
+    {
+        
+    }
+
 }

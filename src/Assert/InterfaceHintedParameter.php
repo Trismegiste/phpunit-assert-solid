@@ -43,10 +43,6 @@ class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
         if ($returnResult) {
             return $success;
         }
-
-        if (!$success) {
-            $this->fail($other, $description);
-        }
     }
 
     private function assertTypeHintedFor(\ReflectionMethod $meth, $returnResult = FALSE)
@@ -63,6 +59,8 @@ class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
                 }
             }
         }
+        
+        return true;
     }
 
 }
