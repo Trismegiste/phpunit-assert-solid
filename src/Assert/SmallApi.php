@@ -27,7 +27,7 @@ class SmallApi extends \PHPUnit_Framework_Constraint
      */
     public function toString()
     {
-        return 'class has a small public interface';
+        return "class has a small public interface ({$this->small} methods max)";
     }
 
     /**
@@ -42,7 +42,6 @@ class SmallApi extends \PHPUnit_Framework_Constraint
             if ($returnResult) {
                 return false;
             } else {
-                var_dump($fqcn, $description);
                 $this->fail($fqcn, $description);
             }
         }

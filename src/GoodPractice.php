@@ -40,9 +40,9 @@ trait GoodPractice
         return new Assert\SmallApi($n);
     }
 
-    public static function assertSmallApi($fqcn, $msg = '')
+    public static function assertSmallApi($fqcn, $max = 5, $msg = '')
     {
-        self::assertThat($fqcn, self::isSmallApi(), $msg);
+        self::assertThat($fqcn, self::isSmallApi($max), $msg);
     }
 
 }
