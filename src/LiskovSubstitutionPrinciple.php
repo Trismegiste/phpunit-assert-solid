@@ -4,40 +4,58 @@
  * phpunit-solid-assertion
  */
 
-namespace Trismegiste\Assert\Solid;
+namespace Trismegiste\SolidAssert;
 
 /**
  * LiskovSubstitutionPrinciple is an implementation of solid assertions
+ * based on LSP, design by contract and loose-coupling.
  */
 trait LiskovSubstitutionPrinciple
 {
 
-    protected function assertInterfaceTypeHinted($fqcn)
+    public static function isInterfaceHintedParameter()
     {
-        $refl = new \ReflectionClass($fqcn);
-
-        foreach ($refl->getMethods() as $meth) {
-            $this->assertTypeHintFor($meth);
-        }
+        return new \Trismegiste\SolidAssert\Assert\InterfaceHintedParameter();
     }
 
-    private function assertTypeHintFor(\ReflectionMethod $meth)
+    public static function assertInterfaceHintedParameter($fqcn)
     {
-        foreach ($meth->getParameters() as $arg) {
-            if (!is_null($typeHint = $arg->getClass())) {
-                $this->assertTrue($typeHint->isInterface(), $typeHint->name
-                        . " is not an interface in "
-                        . $meth->getDeclaringClass() . '::' . $meth->name);
-            }
-        }
+        self::assertThat($fqcn, self::isInterfaceHintedParameter());
     }
 
+    /**
+     * Asserts if there is no use of evil practices that breaks LSP
+     * 
+     * @param string $fqcn
+     */
     protected function assertNoViolation($fqcn)
     {
         // no instanceof
         // no is_subclass
         // use_trait
         // no method_exist...
+    }
+
+    /**
+     * Asserts if methods are declared without a contract (or a base class)
+     * 
+     * @param string $fqcn
+     * @param string $exceptionPattern regexp for exception (default: all magic methods)
+     */
+    protected function assertNoMethodOutsideContract($fqcn, $exceptionPattern = '#^__#')
+    {
+        // each method has a declaring class from above
+    }
+
+    /**
+     * Asserts if no objects are passed as method arguments without a type-hint
+     * (not stricly related to LSP but same spirit)
+     * 
+     * @param string $fqcn
+     */
+    protected function assertNoHiddenCoupling($fqcn)
+    {
+        
     }
 
 }

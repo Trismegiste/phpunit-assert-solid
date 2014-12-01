@@ -67,3 +67,15 @@ not magic. The goal is to avoid bad pratices to pollute an originally well-coded
 ### But you cannot prevent someone to remove one of your assertion ?
 That's right, but the git-blame will show you who has knowingly removed it. It's
 much easier to track so ignorance is no longer an excuse.
+
+### SOLID principles are not as strict as you assert it ! Or some assertions
+are not in the right principle trait.
+That's not a question but I agree nonetheless. Many bad pratices don't break
+one principle but two or three. The best example is the Singleton antipattern :
+It breaks OCP because the singleton cannot be open for extension and it breaks
+DIP because clients of this singleton will call for the unique instance 
+instead of being injected with an unique (or not) instance. So I have splitted
+every assertion in traits with a principle "flavour".
+
+One other way could be to group assertions by anti-patterns. But since main 
+guidance is SOLID, I prefer this way.

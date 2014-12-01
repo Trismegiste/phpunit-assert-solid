@@ -11,8 +11,8 @@ namespace Trismegiste\Assert\Solid;
  */
 trait DependencyInversionPrinciple
 {
-    // tell, don't ask
+    // don't ask, tell
     // don't call us, we call you
     // no new
-    // no static call
+    // no static call of singleton
 }

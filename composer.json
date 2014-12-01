@@ -3,7 +3,7 @@
     "description": "Assert your SOLID compliance and coding good pratices in unit tests",
     "license": "MIT",
     "type": "library",
-    "keywords": ["phpunit", "assert", "solid", "analyzer"],
+    "keywords": ["phpunit", "assert", "solid", "analyzer", "demeter"],
     "authors": [
         {
             "name": "Trismegiste",
@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Trismegiste\\Assert\\Solid\\": "src/"
+            "Trismegiste\\SolidAssert\\": "src/"
         }
     },
     "require": {

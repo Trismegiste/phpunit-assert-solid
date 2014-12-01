@@ -23,9 +23,4 @@ trait InterfaceSegregationPrinciple
                 . implode(', ', $motherFqcn));
     }
 
-    protected function assertNoMethodOutsideContract($fqcn)
-    {
-        // each method has a declaring class from above
-    }
-
 }
