@@ -11,41 +11,22 @@ use Trismegiste\SolidAssert\Assert\InterfaceHintedParameter;
 /**
  * InterfaceHintedParameterTest tests InterfaceHintedParameter
  */
-class InterfaceHintedParameterTest extends \PHPUnit_Framework_TestCase
+class InterfaceHintedParameterTest extends ConstraintTestCase
 {
 
-    /** @var InterfaceHintedParameter */
-    protected $sut;
-
-    protected function setUp()
+    protected function createConstraint()
     {
-        $this->sut = new InterfaceHintedParameter();
+        return new InterfaceHintedParameter();
     }
 
-    public function testReturnFailure()
+    public function getBadCase()
     {
-        $this->assertFalse($this->sut->evaluate('BadProject\Case1', '', true));
+        return [['BadProject\Case1']];
     }
 
-    public function testExceptionFailure()
+    public function getGoodCase()
     {
-        try {
-            $this->sut->evaluate('BadProject\Case1');
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
-            return;
-        }
-
-        $this->fail();
-    }
-
-    public function testReturnSuccess()
-    {
-        $this->assertTrue($this->sut->evaluate('BadProject\Good1', '', true));
-    }
-
-    public function testNoExceptionSuccess()
-    {
-        $this->sut->evaluate('BadProject\Good1');
+        return [['BadProject\Good1']];
     }
 
 }
