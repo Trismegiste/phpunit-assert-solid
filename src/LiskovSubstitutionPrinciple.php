@@ -18,9 +18,9 @@ trait LiskovSubstitutionPrinciple
         return new Assert\InterfaceHintedParameter();
     }
 
-    public static function assertInterfaceHintedParameter($fqcn)
+    public static function assertInterfaceHintedParameter($fqcn, $msg = '')
     {
-        self::assertThat($fqcn, self::isInterfaceHintedParameter());
+        self::assertThat($fqcn, self::isInterfaceHintedParameter(), $msg);
     }
 
     /**

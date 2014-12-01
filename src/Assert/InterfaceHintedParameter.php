@@ -7,34 +7,34 @@
 namespace Trismegiste\SolidAssert\Assert;
 
 /**
- * InterfaceHintedParameter is an assertion for interface-hinted parameters of method
- * Asserts if methods paramters are type-hinted with interface
+ * Interface is the highest level of abstraction, so if you type-hint all methods parameters
+ * with interfaces, you have good chance to ensure the OCP in this object 
+ * and the LSP in client objects.
  * 
- * Does not mean $fqcn is complying LSP but means objects used in $fqcn
- * will tend to follow LSP (unless it uses reflection or instanceof...)
- * 
- * But primarily, it means a good pratice, the "design by contract" 
+ * Nonetheless, it does not eliminate the circle-ellipse problem but in the worst
+ * case, you still have a loose-coupled system.
  */
 class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
 {
 
     /**
-     * Returns a string representation of the constraint.
-     *
-     * @return string
+     * @inheritdoc
      */
     public function toString()
     {
         return 'only interface-hinted parameters';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function evaluate($fqcn, $description = '', $returnResult = FALSE)
     {
         $success = true;
         $refl = new \ReflectionClass($fqcn);
 
         foreach ($refl->getMethods() as $meth) {
-            if (!$this->assertTypeHintedFor($meth, $returnResult)) {
+            if (!$this->assertTypeHintedFor($meth, $description, $returnResult)) {
                 $success = false;
                 break;
             }
@@ -45,7 +45,7 @@ class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
         }
     }
 
-    private function assertTypeHintedFor(\ReflectionMethod $meth, $returnResult = FALSE)
+    private function assertTypeHintedFor(\ReflectionMethod $meth, $description = '', $returnResult = FALSE)
     {
         foreach ($meth->getParameters() as $arg) {
             if (!is_null($typeHint = $arg->getClass())) {
@@ -53,13 +53,14 @@ class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
                     if ($returnResult) {
                         return false;
                     } else {
-                        $this->fail($meth->getDeclaringClass()->name, $typeHint->name
+                        $this->fail($meth->getDeclaringClass()->name, $description . PHP_EOL
+                                . $typeHint->name
                                 . " is not an interface in " . $meth->name);
                     }
                 }
             }
         }
-        
+
         return true;
     }
 
