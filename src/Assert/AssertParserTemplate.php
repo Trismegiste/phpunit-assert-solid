@@ -23,6 +23,7 @@ abstract class AssertParserTemplate extends \PHPUnit_Framework_Constraint
         $parser = new PhpParser\Parser(new PhpParser\Lexer());
         $traverser = new PhpParser\NodeTraverser();
         $visitor = $this->createVisitor();
+        $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
         $traverser->addVisitor($visitor);
 
         try {
