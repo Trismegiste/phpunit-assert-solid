@@ -20,7 +20,7 @@ class HollywoodPrinciple extends \PHPUnit_Framework_Constraint
 
     public function toString()
     {
-        return "does not follow Hollywood principle";
+        return "is following Hollywood principle";
     }
 
     public function evaluate($other, $description = '', $returnResult = false)
@@ -38,6 +38,16 @@ class HollywoodPrinciple extends \PHPUnit_Framework_Constraint
             $traverser->traverse($stmt);
         } catch (PhpParser\Error $e) {
             echo 'Parse Error: ', $e->getMessage();
+        }
+
+        $report = $visitor->getReport();
+
+        if ($returnResult) {
+            return !count($report);
+        } else {
+            if (count($report)) {
+                $this->fail($other, $description . implode(PHP_EOL, $report));
+            }
         }
     }
 
