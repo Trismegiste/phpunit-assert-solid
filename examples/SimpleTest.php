@@ -42,4 +42,9 @@ class SimpleTest extends PHPUnit_Framework_TestCase
         $this->assertNotStaticFactory('BadProject\Case6');
     }
 
+    public function testDemeterLawCompliance()
+    {
+        $this->assertDemeterLawCompliant('BadProject\Case7');
+    }
+
 }
