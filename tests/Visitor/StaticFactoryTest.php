@@ -19,4 +19,21 @@ class StaticFactoryTest extends VisitorTestCase
         return new StaticFactory();
     }
 
+    public function testNonStaticFactory()
+    {
+        $code = 'class Swag { function create() { return new stdClass; }}';
+        $this->parseAndTraverseMethod($code);
+        $report = $this->sut->getReport();
+        $this->assertCount(0, $report);
+    }
+
+    public function testStaticFactory()
+    {
+        $code = 'class Swag { public static function create() { return new stdClass; }}';
+        $this->parseAndTraverseMethod($code);
+        $report = $this->sut->getReport();
+        $this->assertCount(1, $report);
+        $this->assertRegExp('#OCP#', $report[0]);
+    }
+
 }
