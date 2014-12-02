@@ -26,7 +26,7 @@ class LiskovCompliantTest extends ConstraintTestCase
 
     public function getGoodCase()
     {
-        return [['BadProject\Good4']];
+        return [['BadProject\Good5']];
     }
 
 }

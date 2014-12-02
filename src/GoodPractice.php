@@ -56,4 +56,15 @@ trait GoodPractice
         self::assertThat($fqcn, static::isHollywoodPrinciple(), $msg);
     }
 
+    // 5
+    public static function isLiskovCompliant()
+    {
+        return new Assert\LiskovCompliant();
+    }
+
+    public static function assertLiskovCompliant($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, static::isLiskovCompliant(), $msg);
+    }
+
 }

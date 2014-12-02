@@ -34,4 +34,9 @@ class SimpleTest extends PHPUnit_Framework_TestCase
         $this->assertHollywoodPrinciple('BadProject\Case4');
     }
 
+    public function testLiskovCompliance()
+    {
+        $this->assertLiskovCompliant('BadProject\Case5');
+    }
+
 }
