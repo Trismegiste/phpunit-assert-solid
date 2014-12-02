@@ -4,8 +4,6 @@
  * phpunit-solid-assertion
  */
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
-
 /**
  * SimpleExample is an example
  */
