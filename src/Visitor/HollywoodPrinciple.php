@@ -6,57 +6,13 @@
 
 namespace Trismegiste\SolidAssert\Visitor;
 
-use PhpParser\NodeVisitorAbstract;
 use PhpParser\Node;
 
 /**
  * HollywoodPrinciple is a visitor for searching HP violation
  */
-class HollywoodPrinciple extends NodeVisitorAbstract
+class HollywoodPrinciple extends MethodContentTracking
 {
-
-    protected $currentClass;
-    protected $currentMethod;
-    protected $report = [];
-
-    public function getReport()
-    {
-        return $this->report;
-    }
-
-    protected function pushViolation(Node $node, $msg)
-    {
-        $this->report[] = $msg . ' at line ' . $node->getLine();
-    }
-
-    public function enterNode(Node $node)
-    {
-        switch ($node->getType()) {
-            case 'Stmt_Class':
-                $this->currentClass = $node->name;
-                break;
-            case 'Stmt_ClassMethod':
-                $this->currentMethod = $node->name;
-                break;
-
-            default:
-                if (!is_null($this->currentMethod)) {
-                    $this->enterMethodCode($node);
-                }
-        }
-    }
-
-    public function leaveNode(Node $node)
-    {
-        switch ($node->getType()) {
-            case 'Stmt_Class':
-                $this->currentClass = null;
-                break;
-            case 'Stmt_ClassMethod':
-                $this->currentMethod = null;
-                break;
-        }
-    }
 
     protected function enterMethodCode(Node $node)
     {
