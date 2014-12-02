@@ -16,7 +16,7 @@ class LiskovViolationTest extends VisitorTestCase
 
     public function testInstanceOf()
     {
-        $code = 'class Toto { function arf() { $obj instanceof stdClass; }}';
+        $code = '$obj instanceof stdClass;';
         $this->parseAndTraverse($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
@@ -39,7 +39,7 @@ class LiskovViolationTest extends VisitorTestCase
      */
     public function testNotStaticCall($func)
     {
-        $code = "class Toto { function arf() { $func(\$obj,stdClass); }}";
+        $code = "$func(\$obj,stdClass);";
         $this->parseAndTraverse($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);

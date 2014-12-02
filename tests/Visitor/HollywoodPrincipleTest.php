@@ -16,7 +16,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
 
     public function testNewStmt()
     {
-        $code = 'class Toto { function arf() { new stdClass; }}';
+        $code = 'new stdClass;';
         $this->parseAndTraverse($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
@@ -30,7 +30,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
             ['static'],
             ['self'],
             ['parent'],
-            ['Toto']
+            ['Swag']
         ];
     }
 
@@ -39,7 +39,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
      */
     public function testNotStaticCall($scope)
     {
-        $code = "class Toto { function arf() { $scope::arf(); }}";
+        $code = "$scope::yolo();";
         $this->parseAndTraverse($code);
         $report = $this->sut->getReport();
         $this->assertCount(0, $report);
@@ -47,7 +47,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
 
     public function testStaticCall()
     {
-        $code = "class Toto { function arf() { Alien::arf(); }}";
+        $code = "Alien::yop();";
         $this->parseAndTraverse($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
@@ -56,7 +56,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
 
     public function testEvilGlobal()
     {
-        $code = 'class Toto { function arf() { global $god; }}';
+        $code = 'global $god;';
         $this->parseAndTraverse($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
