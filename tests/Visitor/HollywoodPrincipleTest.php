@@ -82,4 +82,13 @@ class HollywoodPrincipleTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsWith("static call", $report[0]);
     }
 
+    public function testEvilGlobal()
+    {
+        $code = 'class Toto { function arf() { global $god; }}';
+        $this->parseAndTraverse($code);
+        $report = $this->sut->getReport();
+        $this->assertCount(1, $report);
+        $this->assertStringStartsWith("global", $report[0]);
+    }
+
 }
