@@ -28,6 +28,7 @@ class LiskovViolation extends MethodContentTracking
 
     // I don't put 'class_implements' because it's a common pattern and relying
     // on interface is roughly acceptable. Note: 'method_exists' is the worst function EVAR !
+    // and the most useless is 'class_uses' since methods could be aliased.
     private $forbidden = ['is_subclass_of', 'class_uses', 'class_parents', 'method_exists'];
 
     protected function enterMethodCode(Node $node)
@@ -37,7 +38,7 @@ class LiskovViolation extends MethodContentTracking
                 $skip = false;
                 if ($node->class instanceof Node\Name) {
                     // I accept a clean use of instanceof on an interface
-                    $name = $node->name->toString();
+                    $name = (string) $node->name;
                     $skip = interface_exists($name);
                 }
                 if (!$skip) {
