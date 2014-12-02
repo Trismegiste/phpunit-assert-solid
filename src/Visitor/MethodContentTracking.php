@@ -16,6 +16,7 @@ use PhpParser\Node;
 abstract class MethodContentTracking extends NodeVisitorAbstract
 {
 
+    protected $currentNamespace;
     protected $currentClass;
     protected $currentMethod;
     protected $report = [];
@@ -33,8 +34,11 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
     public function enterNode(Node $node)
     {
         switch ($node->getType()) {
+            case 'Stmt_Namespace':
+                $this->currentNamespace = $node->name;
+                break;
             case 'Stmt_Class':
-                $this->currentClass = $node->name;
+                $this->currentClass = $this->getFqcn($node);
                 break;
             case 'Stmt_ClassMethod':
                 $this->currentMethod = $node->name;
@@ -60,4 +64,17 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
     }
 
     abstract protected function enterMethodCode(Node $node);
+
+    protected function getFqcn(Node $node)
+    {
+        if (null !== $this->currentNamespace) {
+            $namespacedName = clone $this->currentNamespace;
+            $namespacedName->append($node->name);
+        } else {
+            $namespacedName = $node->name;
+        }
+
+        return (string) $namespacedName;
+    }
+
 }

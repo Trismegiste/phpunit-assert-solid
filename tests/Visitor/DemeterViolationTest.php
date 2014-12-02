@@ -21,7 +21,9 @@ class DemeterViolationTest extends VisitorTestCase
 
     public function testNestedCall()
     {
-        $this->parseAndTraverseMethod('$obj->call1()->call2();');
+        $code = 'class Swag' . rand() . ' { function yolo() { $obj->call1()->call2(); }}';
+        eval($code);
+        $this->parseAndTraversePhp($code);
         $this->assertCount(1, $this->sut->getReport());
     }
 

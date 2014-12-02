@@ -7,7 +7,7 @@ class Good4
 
     public function method1()
     {
-        Good4::method1();
+        Good4::method2();
     }
 
     public static function method2()
