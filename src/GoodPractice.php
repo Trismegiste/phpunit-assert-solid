@@ -78,4 +78,15 @@ trait GoodPractice
         self::assertThat($fqcn, static::isNotStaticFactory(), $msg);
     }
 
+    // 7
+    public static function isDemeterLawCompliant()
+    {
+        return new Assert\DemeterLaw();
+    }
+
+    public static function assertDemeterLawCompliant($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, static::isDemeterLawCompliant(), $msg);
+    }
+
 }

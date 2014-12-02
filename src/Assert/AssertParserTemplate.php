@@ -10,7 +10,7 @@ use PhpParser;
 use Trismegiste\SolidAssert\Visitor;
 
 /**
- * AssertParserTemplate is a template method for assertion based on a parser
+ * AssertParserTemplate is a factory method for assertion based on a parser
  */
 abstract class AssertParserTemplate extends \PHPUnit_Framework_Constraint
 {

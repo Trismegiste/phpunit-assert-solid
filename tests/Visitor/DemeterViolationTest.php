@@ -16,7 +16,7 @@ class DemeterViolationTest extends VisitorTestCase
 
     protected function createVisitor()
     {
-        return new DemeterViolation();
+        return new DemeterViolation(2);
     }
 
     public function testNestedCall()

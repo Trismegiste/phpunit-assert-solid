@@ -18,12 +18,18 @@ class DemeterViolation extends MethodContentTracking
 {
 
     protected $nestedCall = 0;
+    protected $threshold;
+
+    public function __construct($max)
+    {
+        $this->threshold = $max;
+    }
 
     public function leaveNode(Node $node)
     {
         if ($node->getType() === 'Expr_MethodCall') {
             $called = $node->name;
-            if (!method_exists($this->currentClass, $called)) {
+            if (!$this->hasMethod($called)) {
                 $this->nestedCall--;
             }
         }
@@ -34,13 +40,20 @@ class DemeterViolation extends MethodContentTracking
     {
         if ($node->getType() === 'Expr_MethodCall') {
             $called = $node->name;
-            if (!method_exists($this->currentClass, $called)) {
+            if (!$this->hasMethod($called)) {
                 $this->nestedCall++;
             }
-            if ($this->nestedCall >= 2) {
+            if ($this->nestedCall >= $this->threshold) {
                 $this->pushViolation($node, 'chained calls after ' . $called);
             }
         }
+    }
+
+    protected function hasMethod($name)
+    {
+        $refl = new \ReflectionClass($this->currentClass);
+
+        return $refl->hasMethod($name);
     }
 
 }
