@@ -67,4 +67,15 @@ trait GoodPractice
         self::assertThat($fqcn, static::isLiskovCompliant(), $msg);
     }
 
+    // 6
+    public static function isNotStaticFactory()
+    {
+        return new Assert\StaticFactory();
+    }
+
+    public static function assertNotStaticFactory($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, static::isNotStaticFactory(), $msg);
+    }
+
 }

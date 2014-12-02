@@ -21,7 +21,7 @@ class StaticFactory extends AssertParserTemplate
 
     public function toString()
     {
-        'class does not break OCP by using static factory nor singleton';
+        return 'class does not break OCP by using static factory nor singleton';
     }
 
 }

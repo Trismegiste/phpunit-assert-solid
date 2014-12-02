@@ -39,4 +39,9 @@ class SimpleTest extends PHPUnit_Framework_TestCase
         $this->assertLiskovCompliant('BadProject\Case5');
     }
 
+    public function testStaticFactorySux()
+    {
+        $this->assertNotStaticFactory('BadProject\Case6');
+    }
+
 }
