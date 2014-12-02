@@ -51,4 +51,12 @@ class LiskovViolationTest extends VisitorTestCase
         return new LiskovViolation();
     }
 
+    public function testInstanceOfInterfaceOk()
+    {
+        $code = '$obj instanceof \Iterator;';
+        $this->parseAndTraverse($code);
+        $report = $this->sut->getReport();
+        $this->assertCount(0, $report);
+    }
+
 }

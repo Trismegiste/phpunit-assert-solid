@@ -11,5 +11,5 @@ namespace Trismegiste\Assert\Solid;
  */
 trait OpenClosePrinciple
 {
-    // track singleton
+    // track singleton / static factory
 }

@@ -38,7 +38,7 @@ class LiskovViolation extends MethodContentTracking
                 $skip = false;
                 if ($node->class instanceof Node\Name) {
                     // I accept a clean use of instanceof on an interface
-                    $name = (string) $node->name;
+                    $name = (string) $node->class;
                     $skip = interface_exists($name);
                 }
                 if (!$skip) {
