@@ -17,7 +17,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
     public function testNewStmt()
     {
         $code = 'new stdClass;';
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $report = $report[0];
@@ -40,7 +40,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
     public function testNotStaticCall($scope)
     {
         $code = "$scope::yolo();";
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(0, $report);
     }
@@ -48,7 +48,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
     public function testStaticCall()
     {
         $code = "Alien::yop();";
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $this->assertStringStartsWith("static call", $report[0]);
@@ -57,7 +57,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
     public function testEvilGlobal()
     {
         $code = 'global $god;';
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $this->assertStringStartsWith("global", $report[0]);

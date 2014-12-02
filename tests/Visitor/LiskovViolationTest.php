@@ -17,7 +17,7 @@ class LiskovViolationTest extends VisitorTestCase
     public function testInstanceOf()
     {
         $code = '$obj instanceof stdClass;';
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $report = $report[0];
@@ -40,7 +40,7 @@ class LiskovViolationTest extends VisitorTestCase
     public function testNotStaticCall($func)
     {
         $code = "$func(\$obj,stdClass);";
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $this->assertRegExp('#^use of#', $report[0]);
@@ -54,7 +54,7 @@ class LiskovViolationTest extends VisitorTestCase
     public function testInstanceOfInterfaceOk()
     {
         $code = '$obj instanceof \Iterator;';
-        $this->parseAndTraverse($code);
+        $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(0, $report);
     }

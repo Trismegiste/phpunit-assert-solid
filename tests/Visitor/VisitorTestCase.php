@@ -21,10 +21,15 @@ abstract class VisitorTestCase extends \PHPUnit_Framework_TestCase
     /** @var \PhpParser\Parser */
     protected $parser;
 
-    protected function parseAndTraverse($code)
+    protected function parseAndTraversePhp($code)
     {
-        $stmt = $this->parser->parse('<?php class Swag { function yolo() { ' . $code . ' }}');
+        $stmt = $this->parser->parse('<?php ' . $code);
         $this->traverser->traverse($stmt);
+    }
+
+    protected function parseAndTraverseMethod($code)
+    {
+        $this->parseAndTraversePhp('class Swag { function yolo() { ' . $code . ' }}');
     }
 
     abstract protected function createVisitor();
