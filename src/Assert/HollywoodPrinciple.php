@@ -20,7 +20,7 @@ class HollywoodPrinciple extends \PHPUnit_Framework_Constraint
 
     public function toString()
     {
-        return "is following Hollywood principle";
+        return "class is following Hollywood principle";
     }
 
     public function evaluate($other, $description = '', $returnResult = false)

@@ -29,4 +29,9 @@ class SimpleTest extends PHPUnit_Framework_TestCase
         $this->assertSmallApi('BadProject\Case3');
     }
 
+    public function testHollywoodPrinciple()
+    {
+        $this->assertHollywoodPrinciple('BadProject\Case4');
+    }
+
 }

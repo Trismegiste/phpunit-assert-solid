@@ -45,4 +45,15 @@ trait GoodPractice
         self::assertThat($fqcn, self::isSmallApi($max), $msg);
     }
 
+    // 4
+    public static function isHollywoodPrinciple()
+    {
+        return new Assert\HollywoodPrinciple();
+    }
+
+    public static function assertHollywoodPrinciple($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, static::isHollywoodPrinciple(), $msg);
+    }
+
 }
