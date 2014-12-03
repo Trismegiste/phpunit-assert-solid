@@ -39,7 +39,7 @@ class LiskovViolation extends MethodContentTracking
                 if ($node->class instanceof Node\Name) {
                     // I accept a clean use of instanceof on an interface
                     $name = (string) $node->class;
-                    $skip = interface_exists($name);  // @todo will fail with namespace
+                    $skip = interface_exists($name);
                 }
                 if (!$skip) {
                     $this->pushViolation($node, 'use of instanceof');

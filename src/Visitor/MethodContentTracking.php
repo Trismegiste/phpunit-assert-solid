@@ -10,8 +10,8 @@ use PhpParser\NodeVisitorAbstract;
 use PhpParser\Node;
 
 /**
- * MethodContentTracking is a template method ppattern for exploring the content
- * of a class method
+ * MethodContentTracking is a template method pattern for exploring the content
+ * of class methods
  */
 abstract class MethodContentTracking extends NodeVisitorAbstract
 {
@@ -21,16 +21,30 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
     protected $currentMethod;
     protected $report = [];
 
+    /**
+     * gets a compiled report
+     * 
+     * @return array
+     */
     public function getReport()
     {
         return $this->report;
     }
 
+    /**
+     * stack a new line in the report for a given node
+     * 
+     * @param \PhpParser\Node $node
+     * @param string $msg
+     */
     protected function pushViolation(Node $node, $msg)
     {
         $this->report[] = $msg . ' at line ' . $node->getLine();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function enterNode(Node $node)
     {
         switch ($node->getType()) {
@@ -51,6 +65,9 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function leaveNode(Node $node)
     {
         switch ($node->getType()) {
@@ -63,8 +80,20 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
         }
     }
 
+    /**
+     * Enters a node within a class method
+     * 
+     * @param \PhpParser\Node $node
+     */
     abstract protected function enterMethodCode(Node $node);
 
+    /**
+     * gets a fqcn from an unqualified name
+     * 
+     * @param \PhpParser\Node $node
+     * 
+     * @return string
+     */
     protected function getFqcn(Node $node)
     {
         if (null !== $this->currentNamespace) {

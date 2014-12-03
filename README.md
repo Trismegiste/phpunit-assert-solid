@@ -110,7 +110,7 @@ responsibilities (SRP). Default size is 5
 ### assertHollywoodPrinciple($fqcn)
 Asserts there is no "new" nor Singleton calls in a given class. This ensures
 object dependencies are injected in this class, not created nor requested (DIP).
-Also known as "don't ask, tell".
+A variant is "don't ask, tell".
 
 ### assertLiskovCompliant($fqcn) 
 Asserts there is no "reflection tricks" which would undermine LSP : is_subclass_of,

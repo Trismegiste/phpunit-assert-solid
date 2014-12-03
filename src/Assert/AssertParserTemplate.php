@@ -15,7 +15,10 @@ use Trismegiste\SolidAssert\Visitor;
 abstract class AssertParserTemplate extends \PHPUnit_Framework_Constraint
 {
 
-    public function evaluate($other, $description = '', $returnResult = false)
+    /**
+     * @inheritdoc
+     */
+    final public function evaluate($other, $description = '', $returnResult = false)
     {
         $refl = new \ReflectionClass($other);
         $filename = $refl->getFileName();
@@ -45,6 +48,9 @@ abstract class AssertParserTemplate extends \PHPUnit_Framework_Constraint
     }
 
     /**
+     * Creates the visitor for this assertion
+     * (this is the factory method)
+     * 
      * @return Visitor\MethodContentTracking
      */
     protected abstract function createVisitor();
