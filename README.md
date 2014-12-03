@@ -31,7 +31,7 @@ a vaccine.
 class ProjectTest extends PHPUnit_Framework_TestCase
 {
     use \Trismegiste\SolidAssert\GoodPractice;  // <= this adds my new assertions
-// see example/SimpleTest.php for a running example or below...
+// see examples/SimpleTest.php for a running example or below...
 ```
 
 ## Why
@@ -120,7 +120,7 @@ because, it is less dangerous and a common pattern.
 ### assertNotStaticFactory($fqcn)
 Asserts there is no new in a static method (typically singletons and static factories
 are use-case) because it is a violation of OCP (and DIP as edge-effect). Standard
-factories (Factory Method, Builder...) are not targeted by this assertion.
+creational design patterns (Factory Method, Builder...) are not targeted by this assertion.
 
 ### assertDemeterLawCompliant($fqcn)
 Asserts a class only knows itself and its close neighbours (Law of Demeter). 
@@ -129,7 +129,7 @@ Experimental.
 
 ### assertNoHiddenCoupling($fqcn)
 Detects if parameters passed on to methods are actually objects without 
-type-hinting which is a well-known (and sadly common) bad practice (design by contract
+type-hinting which is a bad practice (design by contract
 violation). Can't detect php tricks like reflection and call_user_func*().
 
 ## FAQ
@@ -161,6 +161,19 @@ DIP elsewhere because clients of this singleton will call for the unique instanc
 instead of being injected with the instance. So, remember the subtitle :
 "with an axe" :smile:
 
+### Do you know that "testing does not mean freezing" ?
+Yes, that's right. Perhaps, one would remove an assertion with good reason.
+The goal is not to put these assertions everywhere. 
+
+But I think 
+assertInterfaceHintedParameter, assertNoHiddenCoupling should work almost everywhere.
+If your class is not a factory, assertHollywoodPrinciple should work too.
+assertNotStaticFactory is a way to "lock" a creational design pattern.
+
+assertNoMethodWithoutContract is very strict so it will work on a few cases.
+assertLiskovCompliant should work on model classes because if you need reflection tricks 
+within the model, you're doing it wrong.
+
 ### Did you know one can easily workaround these assertions ?
 That's right, for simplicity, this lib does not track hacks with ReflectionClass
 or call_user_func(). If somebody has the time to hack this lib, I think she must
@@ -178,6 +191,11 @@ Yes, I know. The code must compil, not run. Introspection with the
 PhpParser is sometime a pain in the ass to explore so I kept the code at
 the minimum. Beside, code is sometime not really valid so this lib must adapt
 without throwing an error each time a property is not declared.
+
+### Why phpunit is not in composer.json ?
+Some developer prefer to use their own release of phpunit stored on the system,
+others prefer to embed it in project. As far I've tested, this lib is working 
+on phpunit >= 4.2 but **should** work also with phpunit >= 3.7
 
 ## Soundtracks used for coding this library
 

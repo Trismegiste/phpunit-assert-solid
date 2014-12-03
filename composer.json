@@ -10,16 +10,23 @@
             "homepage": "https://github.com/Trismegiste"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Trismegiste/phpunit-assert-solid/issues"
+    },
     "autoload": {
         "psr-4": {
             "Trismegiste\\SolidAssert\\": "src/"
         }
     },
     "require": {
-        "php": ">=5.4",
-        "nikic/php-parser": "1.0.*"
+        "php": ">=5.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.2.*"
+        "nikic/php-parser": "1.0.*"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
