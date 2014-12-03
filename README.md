@@ -94,6 +94,7 @@ class SimpleTest extends PHPUnit_Framework_TestCase
 see full example in ./examples/SimpleTest.php
 
 ## API
+In all assertions, $fqcn means "fully qualified class name" described as in PSR-0
 
 ### assertInterfaceHintedParameter($fqcn)
 Asserts if all methods parameters for a given class are type-hinted with interface
@@ -145,7 +146,7 @@ whole project scope, so some SOLID principles cannot be completely asserted, it'
 not magic. The goal is to avoid bad pratices to pollute an originally well-coded source
 not to be a SOLID-nazi. Think it like a "hack'n slash" for obvious bad practices.
 
-By the way, if you think you found another common bad practice easy to detect, 
+By the way, if you think you've found another common OOP bad practice easy to detect, 
 please contribute !
 
 ### But you cannot prevent someone to remove one of your assertion ?
@@ -162,17 +163,20 @@ instead of being injected with the instance. So, remember the subtitle :
 "with an axe" :smile:
 
 ### Do you know that "testing does not mean freezing" ?
-Yes, that's right. Perhaps, one would remove an assertion with good reason.
-The goal is not to put these assertions everywhere. 
+Yes, that's right. Perhaps, one would remove an assertion with good reason
+during project development. The goal is not to put all these assertions 
+on every class of your project. 
 
 But I think 
-assertInterfaceHintedParameter, assertNoHiddenCoupling should work almost everywhere.
+assertInterfaceHintedParameter, assertNoHiddenCoupling should work **almost** everywhere.
 If your class is not a factory, assertHollywoodPrinciple should work too.
 assertNotStaticFactory is a way to "lock" a creational design pattern.
 
-assertNoMethodWithoutContract is very strict so it will work on a few cases.
+assertNoMethodWithoutContract is very strict so it will work on a few cases (Facade, Decorator, Repository...).
 assertLiskovCompliant should work on model classes because if you need reflection tricks 
-within the model, you're doing it wrong.
+within the model, you're doing it wrong. I realize an assertion like assertLiskovCompliant
+has little chance to pass on a controller and assertHollywoodPrinciple 
+will fail on a factory design patten. So be smart.
 
 ### Did you know one can easily workaround these assertions ?
 That's right, for simplicity, this lib does not track hacks with ReflectionClass
@@ -193,8 +197,8 @@ the minimum. Beside, code is sometime not really valid so this lib must adapt
 without throwing an error each time a property is not declared.
 
 ### Why phpunit is not in composer.json ?
-Some developer prefer to use their own release of phpunit stored on the system,
-others prefer to embed it in project. As far I've tested, this lib is working 
+Some developers prefer to use their own release of phpunit stored on the system,
+others prefer to embed it in projects. As far I've tested, this lib is working 
 on phpunit >= 4.2 but **should** work also with phpunit >= 3.7
 
 ## Soundtracks used for coding this library

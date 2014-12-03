@@ -26,7 +26,10 @@ class InterfaceHintedParameterTest extends ConstraintTestCase
 
     public function getGoodCase()
     {
-        return [['BadProject\Good1']];
+        return [
+            ['BadProject\Good1'],
+            ['BadProject\Good1i']
+        ];
     }
 
 }
