@@ -10,9 +10,8 @@ your team/github-users to follow [SOLID principles][3] and [Demeter's Law][2] ? 
 ## What
 
 It's a library of assertions for the programer's best friend a.k.a : [PHPUnit][1].
-These assertions are not about how your classes behave but how your classes look like.
-And particuliary, how classes don't break some elementary rules of OOP, mainly the SOLID
-principles and Demeter's Law.
+These **assertions** are about how **classes** don't break some elementary rules of OOP, 
+mainly the **SOLID guidances** and Demeter's Law.
 
 ## How
 
@@ -94,10 +93,10 @@ class SimpleTest extends PHPUnit_Framework_TestCase
 see full example in ./examples/SimpleTest.php
 
 ## API
-In all assertions, $fqcn means "fully qualified class name" described as in PSR-0
+In all assertions, $fqcn means "fully qualified class name" as described as in PSR-0
 
 ### assertInterfaceHintedParameter($fqcn)
-Asserts if all methods parameters for a given class are type-hinted with interface
+Asserts if all methods parameters for a given class/interface are type-hinted with interface
 and not class. (loose-coupling)
 
 ### assertNoMethodWithoutContract($fqcn)
@@ -169,14 +168,15 @@ on every class of your project.
 
 But I think 
 assertInterfaceHintedParameter, assertNoHiddenCoupling should work **almost** everywhere.
+It is essential assertInterfaceHintedParameter will pass on every interface you declare.
 If your class is not a factory, assertHollywoodPrinciple should work too.
 assertNotStaticFactory is a way to "lock" a creational design pattern.
 
 assertNoMethodWithoutContract is very strict so it will work on a few cases (Facade, Decorator, Repository...).
 assertLiskovCompliant should work on model classes because if you need reflection tricks 
 within the model, you're doing it wrong. I realize an assertion like assertLiskovCompliant
-has little chance to pass on a controller and assertHollywoodPrinciple 
-will fail on a factory design patten. So be smart.
+has little chance to pass on a controller or a dispatcher and assertHollywoodPrinciple 
+will fail obviously on creational design pattens. So be smart.
 
 ### Did you know one can easily workaround these assertions ?
 That's right, for simplicity, this lib does not track hacks with ReflectionClass
@@ -190,7 +190,7 @@ guidances of phpunit assertions, so debugging failed tests will be
 the standard procedure as usual.
 
 ### Did you know that some code fixtures are invalid ? (example, calling parent
-without a base class)
+without a base class) ?
 Yes, I know. The code must compil, not run. Introspection with the 
 PhpParser is sometime a pain in the ass to explore so I kept the code at
 the minimum. Beside, code is sometime not really valid so this lib must adapt

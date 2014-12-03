@@ -12,7 +12,8 @@ use PhpParser\Node;
  * DemeterViolation is a visitor for tracking Demeter's Law violation
  * 
  * Again, the soft-typing of PHP cannot ensure absolute detections.
- * Fluid interface will fail, as well as chaining variables in muliple lines.
+ * Fluid interface will wrongly fail this assertion and on the other side 
+ * chaining new variables in multiple lines will wrongly pass.
  */
 class DemeterViolation extends MethodContentTracking
 {
