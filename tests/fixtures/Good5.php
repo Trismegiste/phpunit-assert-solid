@@ -2,7 +2,10 @@
 
 namespace BadProject;
 
-interface Param5 {}
+interface Param5
+{
+    
+}
 
 class Good5
 {
@@ -18,10 +21,15 @@ class Good5
     {
         class_implements('Iterator');
     }
-    
+
     public function interfaceOkWithNs()
     {
         $obj instanceof Param5;
+    }
+
+    public function interfaceOkWithFqcn()
+    {
+        $obj instanceof \BadProject\Param5;
     }
 
 }
