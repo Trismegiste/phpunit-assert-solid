@@ -49,4 +49,9 @@ class GoodPracticeTest extends \PHPUnit_Framework_TestCase
         $this->assertDemeterLawCompliant('BadProject\Good7');
     }
 
+    public function testNoHiddenCoupling()
+    {
+        $this->assertNoHiddenCoupling('BadProject\Good8');
+    }
+
 }

@@ -89,4 +89,15 @@ trait GoodPractice
         self::assertThat($fqcn, static::isDemeterLawCompliant(), $msg);
     }
 
+    // 8
+    public static function hasNoHiddenCoupling()
+    {
+        return new Assert\NoMissingTypeHint();
+    }
+
+    public static function assertNoHiddenCoupling($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, static::hasNoHiddenCoupling(), $msg);
+    }
+
 }
