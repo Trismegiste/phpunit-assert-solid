@@ -167,10 +167,17 @@ or call_user_func(). If somebody has the time to hack this lib, I think she must
 save that time and starts following SOLID.
 
 ### Is this a hating machine for your co-workers/contributors ?
-Not at all, it's just a 1337-pass-filter to speed-up code-review.
+Not at all, it's just a 1337-pass-filter to speed-up code review.
 I've put effort into comprehensive error messages and by following the strict 
 guidances of phpunit assertions, so debugging failed tests will be 
 the standard procedure as usual.
+
+### Did you know that some code fixtures are invalid ? (example, calling parent
+without a base class)
+Yes, I know. The code must compil, not run. Introspection with the 
+PhpParser is sometime a pain in the ass to explore so I kept the code at
+the minimum. Beside, code is sometime not really valid so this lib must adapt
+without throwing an error each time a property is not declared.
 
 ## Soundtracks used for coding this library
 
