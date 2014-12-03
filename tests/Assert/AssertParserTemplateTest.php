@@ -12,6 +12,18 @@ namespace tests\Trismegiste\SolidAssert\Assert;
 class AssertParserTemplateTest extends \PHPUnit_Framework_TestCase
 {
 
+    protected $sut;
+
+    protected function setUp()
+    {
+        $visitor = $this->getMockForAbstractClass('Trismegiste\SolidAssert\Visitor\MethodContentTracking');
+
+        $this->sut = $this->getMockForAbstractClass('Trismegiste\SolidAssert\Assert\AssertParserTemplate');
+        $this->sut->expects($this->once())
+                ->method('createVisitor')
+                ->will($this->returnValue($visitor));
+    }
+
     public function getGoodCase()
     {
         $fqcn = [];
@@ -27,14 +39,7 @@ class AssertParserTemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testNeutral($fqcn)
     {
-        $visitor = $this->getMockForAbstractClass('Trismegiste\SolidAssert\Visitor\MethodContentTracking');
-
-        $assert = $this->getMockForAbstractClass('Trismegiste\SolidAssert\Assert\AssertParserTemplate');
-        $assert->expects($this->once())
-                ->method('createVisitor')
-                ->will($this->returnValue($visitor));
-
-        $this->assertTrue($assert->evaluate($fqcn, '', true));
+        $this->assertTrue($this->sut->evaluate($fqcn, '', true));
     }
 
 }
