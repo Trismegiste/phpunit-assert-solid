@@ -1,5 +1,6 @@
 # SOLID Assertions for [PHPUnit][1]
 Don't remind others the [SOLID][3] guidances, do it programatically... with an axe :smile:
+[![Build Status](https://travis-ci.org/Trismegiste/phpunit-assert-solid.svg?branch=master)](https://travis-ci.org/Trismegiste/phpunit-assert-solid)
 
 ## When
 
