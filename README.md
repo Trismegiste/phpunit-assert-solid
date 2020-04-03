@@ -17,8 +17,8 @@ mainly the **SOLID guidances** and Demeter's Law.
 
 ## How
 
-This library does nothing by itself. It is NOT a static code analyzer, like many others
-(you can see mine : [Trismegiste/Mondrian][4] ), it is more a helper for putting assertions
+This library does nothing by itself. It is NOT a static code analyzer,
+it is more a helper for putting assertions
 on SOLID compliance in unit tests. If a static code analyzer is a cure, this tool is
 a vaccine.
 
