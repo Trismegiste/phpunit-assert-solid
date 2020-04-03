@@ -12,7 +12,7 @@ class Good4
 
     public static function method2()
     {
-        parent::missing();
+        self::missing();
     }
 
     protected function noise1()
