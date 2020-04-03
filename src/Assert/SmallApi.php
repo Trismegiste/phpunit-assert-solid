@@ -11,14 +11,13 @@ namespace Trismegiste\SolidAssert\Assert;
  * 
  * This is closely related to SRP and ISP
  */
-class SmallApi extends \PHPUnit\Framework\Constraint
+class SmallApi extends \PHPUnit\Framework\Constraint\Constraint
 {
 
     protected $small;
 
     public function __construct($small)
     {
-        parent::__construct();
         $this->small = $small;
     }
 
@@ -33,22 +32,12 @@ class SmallApi extends \PHPUnit\Framework\Constraint
     /**
      * @inheritdoc
      */
-    public function evaluate($fqcn, $description = '', $returnResult = FALSE)
+    protected function matches($fqcn): bool
     {
         $refl = new \ReflectionClass($fqcn);
         $meth = $refl->getMethods(\ReflectionMethod::IS_PUBLIC);
-        if (count($meth) > $this->small) {
-            // fail
-            if ($returnResult) {
-                return false;
-            } else {
-                $this->fail($fqcn, $description);
-            }
-        }
 
-        if ($returnResult) {
-            return true;
-        }
+        return (count($meth) <= $this->small);
     }
 
 }
