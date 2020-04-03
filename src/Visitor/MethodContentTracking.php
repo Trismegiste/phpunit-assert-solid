@@ -47,15 +47,17 @@ abstract class MethodContentTracking extends NameResolver
      */
     public function enterNode(Node $node)
     {
+        parent::enterNode($node);
+
         switch (get_class($node)) {
             case Node\Stmt\Namespace_::class :
-                $this->currentNamespace = $node->name;
+                $this->currentNamespace = (string) $node->name;
                 break;
             case Node\Stmt\Class_::class :
-                $this->currentClass = $node->namespacedName;
+                $this->currentClass = (string) $node->namespacedName;
                 break;
             case Node\Stmt\ClassMethod::class :
-                $this->currentMethod = $node->name;
+                $this->currentMethod = (string) $node->name;
                 break;
 
             default:
@@ -86,24 +88,4 @@ abstract class MethodContentTracking extends NameResolver
      * @param Node $node
      */
     abstract protected function enterMethodCode(Node $node);
-
-    /**
-     * gets a fqcn from an unqualified name
-     * 
-     * @param Node $node
-     * 
-     * @return string
-     */
-    protected function getFqcn(Node $node)
-    {
-        if (null !== $this->currentNamespace) {
-            $namespacedName = clone $this->currentNamespace;
-            $namespacedName->append($node->name);
-        } else {
-            $namespacedName = $node->name;
-        }
-
-        return (string) $namespacedName;
-    }
-
 }

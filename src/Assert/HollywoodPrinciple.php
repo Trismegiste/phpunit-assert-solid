@@ -22,7 +22,7 @@ class HollywoodPrinciple extends AssertParserTemplate
         return "class is following Hollywood principle";
     }
 
-    protected function createVisitor()
+    protected function createVisitor(): Visitor\MethodContentTracking
     {
         return new Visitor\HollywoodPrinciple();
     }

@@ -7,6 +7,7 @@
 namespace Trismegiste\SolidAssert\Assert;
 
 use Trismegiste\SolidAssert\Visitor\DemeterViolation;
+use Trismegiste\SolidAssert\Visitor\MethodContentTracking;
 
 /**
  * DemeterLaw asserts Demeter's Law compliance
@@ -14,7 +15,7 @@ use Trismegiste\SolidAssert\Visitor\DemeterViolation;
 class DemeterLaw extends AssertParserTemplate
 {
 
-    protected function createVisitor()
+    protected function createVisitor(): MethodContentTracking
     {
         return new DemeterViolation(2);
     }

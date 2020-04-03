@@ -16,7 +16,7 @@ use Trismegiste\SolidAssert\Visitor\MissingTypeHint;
 class NoMissingTypeHint extends AssertParserTemplate
 {
 
-    protected function createVisitor()
+    protected function createVisitor(): \Trismegiste\SolidAssert\Visitor\MethodContentTracking
     {
         return new MissingTypeHint();
     }

@@ -14,7 +14,7 @@ use Trismegiste\SolidAssert\Visitor;
 class StaticFactory extends AssertParserTemplate
 {
 
-    protected function createVisitor()
+    protected function createVisitor(): Visitor\MethodContentTracking
     {
         return new Visitor\StaticFactory();
     }

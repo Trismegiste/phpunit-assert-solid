@@ -23,13 +23,14 @@ class DemeterViolation extends MethodContentTracking
 
     public function __construct($max)
     {
+        parent::__construct();
         $this->threshold = $max;
     }
 
     public function leaveNode(Node $node)
     {
         if ($node->getType() === 'Expr_MethodCall') {
-            $called = $node->name;
+            $called = (string) $node->name;
             if (!$this->hasMethod($called)) {
                 $this->nestedCall--;
             }
@@ -40,7 +41,7 @@ class DemeterViolation extends MethodContentTracking
     protected function enterMethodCode(Node $node)
     {
         if ($node->getType() === 'Expr_MethodCall') {
-            $called = $node->name;
+            $called = (string) $node->name;
             if (!$this->hasMethod($called)) {
                 $this->nestedCall++;
             }

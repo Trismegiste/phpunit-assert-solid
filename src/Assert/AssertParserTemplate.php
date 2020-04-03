@@ -29,7 +29,6 @@ abstract class AssertParserTemplate extends Constraint
         $parser = (new ParserFactory)->create(ParserFactory::ONLY_PHP7);
         $traverser = new PhpParser\NodeTraverser();
         $visitor = $this->createVisitor();
-        $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
         $traverser->addVisitor($visitor);
 
         try {
@@ -50,5 +49,5 @@ abstract class AssertParserTemplate extends Constraint
      * 
      * @return Visitor\MethodContentTracking
      */
-    protected abstract function createVisitor();
+    protected abstract function createVisitor(): Visitor\MethodContentTracking;
 }
