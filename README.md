@@ -198,11 +198,6 @@ PhpParser is sometime a pain in the ass to explore so I kept the code at
 the minimum. Beside, code is sometime not really valid so this lib must adapt
 without throwing an error each time a property is not declared.
 
-### Why phpunit is not in composer.json ?
-Some developers prefer to use their own release of phpunit stored on the system,
-others prefer to embed it in projects. As far I've tested, this lib is working 
-on phpunit >= 4.2 but **should** work also with phpunit >= 3.7
-
 ## Soundtracks used for coding this library
 
  * Johann Sebastian Bach
