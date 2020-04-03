@@ -14,6 +14,11 @@ class GoodPracticeTest extends \PHPUnit\Framework\TestCase
 
     use \Trismegiste\SolidAssert\GoodPractice;
 
+    public function testReturnTypeHint()
+    {
+        $this->assertTypeHintedMethodReturn('BadProject\GoodWithReturn');
+    }
+
     public function testConcreteTypeHint()
     {
         $this->assertInterfaceHintedParameter('BadProject\Good1');

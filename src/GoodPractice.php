@@ -16,6 +16,20 @@ trait GoodPractice
      * Asserts if all methods parameters for a given class are type-hinted with interface
      * and not class. (loose-coupling)
      */
+    public static function isTypeHintedMethodReturn()
+    {
+        return new Assert\TypeHintedMethodReturn();
+    }
+
+    public static function assertTypeHintedMethodReturn($fqcn, $msg = '')
+    {
+        self::assertThat($fqcn, self::isTypeHintedMethodReturn(), $msg);
+    }
+
+    /**
+     * Asserts if all methods parameters for a given class are type-hinted with interface
+     * and not class. (loose-coupling)
+     */
     public static function isInterfaceHintedParameter()
     {
         return new Assert\InterfaceHintedParameter();

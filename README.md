@@ -97,6 +97,9 @@ see full example in ./examples/SimpleTest.php
 ## API
 In all assertions, $fqcn means "fully qualified class name" as described as in PSR-0
 
+### assertTypeHintedMethodReturn($fqcn)
+Asserts if all methods of a given class have a return type
+
 ### assertInterfaceHintedParameter($fqcn)
 Asserts if all methods parameters for a given class/interface are type-hinted with interface
 and not class. (loose-coupling)
