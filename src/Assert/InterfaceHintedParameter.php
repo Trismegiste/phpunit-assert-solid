@@ -14,13 +14,13 @@ namespace Trismegiste\SolidAssert\Assert;
  * Nonetheless, it does not eliminate the circle-ellipse problem but in the worst
  * case, you still have a loose-coupled system.
  */
-class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
+class InterfaceHintedParameter extends \PHPUnit\Framework\Constraint\Constraint
 {
 
     /**
      * @inheritdoc
      */
-    public function toString()
+    public function toString(): string
     {
         return 'only interface-hinted parameters';
     }
@@ -28,35 +28,25 @@ class InterfaceHintedParameter extends \PHPUnit_Framework_Constraint
     /**
      * @inheritdoc
      */
-    public function evaluate($fqcn, $description = '', $returnResult = FALSE)
+    protected function matches($fqcn): bool
     {
-        $success = true;
         $refl = new \ReflectionClass($fqcn);
 
         foreach ($refl->getMethods() as $meth) {
-            if (!$this->assertTypeHintedFor($meth, $description, $returnResult)) {
-                $success = false;
-                break;
+            if (!$this->assertTypeHintedFor($meth)) {
+                return false;
             }
         }
 
-        if ($returnResult) {
-            return $success;
-        }
+        return true;
     }
 
-    private function assertTypeHintedFor(\ReflectionMethod $meth, $description = '', $returnResult = FALSE)
+    private function assertTypeHintedFor(\ReflectionMethod $meth)
     {
         foreach ($meth->getParameters() as $arg) {
             if (!is_null($typeHint = $arg->getClass())) {
                 if (!$typeHint->isInterface()) {
-                    if ($returnResult) {
-                        return false;
-                    } else {
-                        $this->fail($meth->getDeclaringClass()->name, $description . PHP_EOL
-                                . $typeHint->name
-                                . " is not an interface in " . $meth->name);
-                    }
+                    return false;
                 }
             }
         }

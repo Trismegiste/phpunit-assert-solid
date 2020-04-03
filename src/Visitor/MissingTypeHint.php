@@ -35,7 +35,7 @@ class MissingTypeHint extends MethodContentTracking
             $filtered = [];
             foreach ($node->params as $param) {
                 if (is_null($param->type)) {
-                    $filtered[$param->name] = true;
+                    $filtered[$param->var->name] = true;
                 }
             }
             // intersect with variable called with method

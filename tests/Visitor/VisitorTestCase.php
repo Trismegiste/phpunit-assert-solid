@@ -6,19 +6,25 @@
 
 namespace tests\Trismegiste\SolidAssert\Visitor;
 
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitorAbstract;
+use PhpParser\Parser;
+use PhpParser\ParserFactory;
+use PHPUnit\Framework\TestCase;
+
 /**
  * VisitorTestCase tests a visitor
  */
-abstract class VisitorTestCase extends \PHPUnit_Framework_TestCase
+abstract class VisitorTestCase extends TestCase
 {
 
-    /** @var \PhpParser\NodeVisitorAbstract */
+    /** @var NodeVisitorAbstract */
     protected $sut;
 
-    /** @var \PhpParser\NodeTraverser */
+    /** @var NodeTraverser */
     protected $traverser;
 
-    /** @var \PhpParser\Parser */
+    /** @var Parser */
     protected $parser;
 
     protected function parseAndTraversePhp($code)
@@ -34,10 +40,10 @@ abstract class VisitorTestCase extends \PHPUnit_Framework_TestCase
 
     abstract protected function createVisitor();
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->parser = new \PhpParser\Parser(new \PhpParser\Lexer());
-        $this->traverser = new \PhpParser\NodeTraverser();
+        $this->parser = (new ParserFactory)->create(ParserFactory::ONLY_PHP7);
+        $this->traverser = new NodeTraverser();
         $this->sut = $this->createVisitor();
         $this->traverser->addVisitor($this->sut);
     }

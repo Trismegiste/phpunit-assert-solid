@@ -21,7 +21,7 @@ class HollywoodPrincipleTest extends VisitorTestCase
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $report = $report[0];
-        $this->assertRegExp('#new statement at#', $report);
+        $this->assertMatchesRegularExpression('#new statement at#', $report);
     }
 
     public function getNonReportKeyword()

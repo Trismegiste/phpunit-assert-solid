@@ -14,7 +14,7 @@ use Trismegiste\SolidAssert\Visitor\LiskovViolation;
 class LiskovCompliant extends AssertParserTemplate
 {
 
-    public function toString()
+    public function toString(): string
     {
         return 'class is not breaking LSP';
     }

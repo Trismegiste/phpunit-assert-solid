@@ -33,7 +33,7 @@ class StaticFactoryTest extends VisitorTestCase
         $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
-        $this->assertRegExp('#OCP#', $report[0]);
+        $this->assertMatchesRegularExpression('#OCP#', $report[0]);
     }
 
 }

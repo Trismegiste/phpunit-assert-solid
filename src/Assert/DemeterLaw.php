@@ -19,7 +19,7 @@ class DemeterLaw extends AssertParserTemplate
         return new DemeterViolation(2);
     }
 
-    public function toString()
+    public function toString(): string
     {
         return 'class is following Law of Demeter';
     }

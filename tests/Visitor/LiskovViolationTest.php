@@ -21,7 +21,7 @@ class LiskovViolationTest extends VisitorTestCase
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
         $report = $report[0];
-        $this->assertRegExp('#use of instanceof at#', $report);
+        $this->assertMatchesRegularExpression('#use of instanceof at#', $report);
     }
 
     public function getReportKeyword()
@@ -43,7 +43,7 @@ class LiskovViolationTest extends VisitorTestCase
         $this->parseAndTraverseMethod($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
-        $this->assertRegExp('#^use of#', $report[0]);
+        $this->assertMatchesRegularExpression('#^use of#', $report[0]);
     }
 
     protected function createVisitor()

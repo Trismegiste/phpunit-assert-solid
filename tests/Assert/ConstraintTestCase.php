@@ -9,12 +9,12 @@ namespace tests\Trismegiste\SolidAssert\Assert;
 /**
  * ConstraintTestCase is a template for testing Constraint
  */
-abstract class ConstraintTestCase extends \PHPUnit_Framework_TestCase
+abstract class ConstraintTestCase extends \PHPUnit\Framework\TestCase
 {
 
     protected $sut;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->sut = $this->createConstraint();
     }
@@ -36,13 +36,8 @@ abstract class ConstraintTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionFailure($data)
     {
-        try {
-            $this->sut->evaluate($data);
-        } catch (\PHPUnit_Framework_ExpectationFailedException $e) {
-            return;
-        }
-
-        $this->fail();
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+        $this->sut->evaluate($data);
     }
 
     public abstract function getGoodCase();
@@ -60,6 +55,7 @@ abstract class ConstraintTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testNoExceptionSuccess($good)
     {
+        $this->expectNotToPerformAssertions();
         $this->sut->evaluate($good);
     }
 

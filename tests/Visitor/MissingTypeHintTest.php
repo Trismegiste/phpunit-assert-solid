@@ -34,7 +34,7 @@ class MissingTypeHintTest extends VisitorTestCase
      */
     public function testNoMissingHint($code)
     {
-        
+        $this->expectNotToPerformAssertions();
     }
 
     public function testMissing()
@@ -43,7 +43,7 @@ class MissingTypeHintTest extends VisitorTestCase
         $this->parseAndTraversePhp($code);
         $report = $this->sut->getReport();
         $this->assertCount(1, $report);
-        $this->assertRegexp('#parameter \$obj.+at line#', $report[0]);
+        $this->assertMatchesRegularExpression('#parameter \$obj.+at line#', $report[0]);
     }
 
 }

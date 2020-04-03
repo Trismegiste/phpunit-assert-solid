@@ -15,18 +15,20 @@
     },
     "autoload": {
         "psr-4": {
-            "Trismegiste\\SolidAssert\\": "src/"
+            "Trismegiste\\SolidAssert\\": "./src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\Trismegiste\\SolidAssert\\": "./tests/",
+            "BadProject\\": "./tests/fixtures/"
         }
     },
     "require": {
-        "php": ">=5.4"
+        "php": ">=7.3"
     },
     "require-dev": {
-        "nikic/php-parser": "1.0.*"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
+        "nikic/php-parser": "^4.3",
+        "phpunit/phpunit": "^9.0"
     }
 }

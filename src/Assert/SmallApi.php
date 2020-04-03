@@ -11,7 +11,7 @@ namespace Trismegiste\SolidAssert\Assert;
  * 
  * This is closely related to SRP and ISP
  */
-class SmallApi extends \PHPUnit_Framework_Constraint
+class SmallApi extends \PHPUnit\Framework\Constraint
 {
 
     protected $small;
@@ -25,7 +25,7 @@ class SmallApi extends \PHPUnit_Framework_Constraint
     /**
      * @inheritdoc
      */
-    public function toString()
+    public function toString(): string
     {
         return "class has a small public interface ({$this->small} methods max)";
     }

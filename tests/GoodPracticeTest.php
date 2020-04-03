@@ -9,7 +9,7 @@ namespace tests\Trismegiste\SolidAssert;
 /**
  * GoodPracticeTest tests the GoodPractice trait
  */
-class GoodPracticeTest extends \PHPUnit_Framework_TestCase
+class GoodPracticeTest extends \PHPUnit\Framework\TestCase
 {
 
     use \Trismegiste\SolidAssert\GoodPractice;

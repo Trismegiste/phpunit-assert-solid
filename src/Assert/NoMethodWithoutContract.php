@@ -12,13 +12,13 @@ namespace Trismegiste\SolidAssert\Assert;
  * 
  * To follow ISP and design by contract, you need your api be chunked into small interfaces.
  */
-class NoMethodWithoutContract extends \PHPUnit_Framework_Constraint
+class NoMethodWithoutContract extends \PHPUnit\Framework\Constraint
 {
 
     /**
      * @inheritdoc
      */
-    public function toString()
+    public function toString(): string
     {
         return 'class implements only methods previously declared in interfaces';
     }
@@ -49,7 +49,7 @@ class NoMethodWithoutContract extends \PHPUnit_Framework_Constraint
                     return false;
                 } else {
                     $this->fail($fqcn, $description . PHP_EOL
-                            . $meth->name . " has no declaring interface");
+                        . $meth->name . " has no declaring interface");
                 }
             }
         }

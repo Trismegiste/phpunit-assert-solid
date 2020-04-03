@@ -21,7 +21,7 @@ class NoMissingTypeHint extends AssertParserTemplate
         return new MissingTypeHint();
     }
 
-    public function toString()
+    public function toString(): string
     {
         return 'class has no missing type-hint on method parameters';
     }

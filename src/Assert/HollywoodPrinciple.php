@@ -17,7 +17,7 @@ use Trismegiste\SolidAssert\Visitor;
 class HollywoodPrinciple extends AssertParserTemplate
 {
 
-    public function toString()
+    public function toString(): string
     {
         return "class is following Hollywood principle";
     }

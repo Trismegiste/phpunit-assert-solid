@@ -12,13 +12,13 @@ use Trismegiste\SolidAssert\Visitor;
 /**
  * AssertParserTemplate is a factory method for assertion based on a parser
  */
-abstract class AssertParserTemplate extends \PHPUnit_Framework_Constraint
+abstract class AssertParserTemplate extends \PHPUnit\Framework\Constraint\Constraint
 {
 
     /**
      * @inheritdoc
      */
-    final public function evaluate($other, $description = '', $returnResult = false)
+    protected function matches($other): bool
     {
         $refl = new \ReflectionClass($other);
         $filename = $refl->getFileName();
@@ -38,13 +38,7 @@ abstract class AssertParserTemplate extends \PHPUnit_Framework_Constraint
 
         $report = $visitor->getReport();
 
-        if ($returnResult) {
-            return !count($report);
-        } else {
-            if (count($report)) {
-                $this->fail($other, $description . implode(PHP_EOL, $report));
-            }
-        }
+        return !count($report);
     }
 
     /**
