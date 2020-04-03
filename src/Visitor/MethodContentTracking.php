@@ -6,14 +6,14 @@
 
 namespace Trismegiste\SolidAssert\Visitor;
 
-use PhpParser\NodeVisitorAbstract;
 use PhpParser\Node;
+use PhpParser\NodeVisitor\NameResolver;
 
 /**
  * MethodContentTracking is a template method pattern for exploring the content
  * of class methods
  */
-abstract class MethodContentTracking extends NodeVisitorAbstract
+abstract class MethodContentTracking extends NameResolver
 {
 
     protected $currentNamespace;
@@ -34,7 +34,7 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
     /**
      * stack a new line in the report for a given node
      * 
-     * @param \PhpParser\Node $node
+     * @param Node $node
      * @param string $msg
      */
     protected function pushViolation(Node $node, $msg)
@@ -47,14 +47,14 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
      */
     public function enterNode(Node $node)
     {
-        switch ($node->getType()) {
-            case 'Stmt_Namespace':
+        switch (get_class($node)) {
+            case Node\Stmt\Namespace_::class :
                 $this->currentNamespace = $node->name;
                 break;
-            case 'Stmt_Class':
-                $this->currentClass = $this->getFqcn($node);
+            case Node\Stmt\Class_::class :
+                $this->currentClass = $node->namespacedName;
                 break;
-            case 'Stmt_ClassMethod':
+            case Node\Stmt\ClassMethod::class :
                 $this->currentMethod = $node->name;
                 break;
 
@@ -83,14 +83,14 @@ abstract class MethodContentTracking extends NodeVisitorAbstract
     /**
      * Enters a node within a class method
      * 
-     * @param \PhpParser\Node $node
+     * @param Node $node
      */
     abstract protected function enterMethodCode(Node $node);
 
     /**
      * gets a fqcn from an unqualified name
      * 
-     * @param \PhpParser\Node $node
+     * @param Node $node
      * 
      * @return string
      */

@@ -7,12 +7,15 @@
 namespace Trismegiste\SolidAssert\Assert;
 
 use PhpParser;
+use PhpParser\ParserFactory;
+use PHPUnit\Framework\Constraint\Constraint;
+use ReflectionClass;
 use Trismegiste\SolidAssert\Visitor;
 
 /**
  * AssertParserTemplate is a factory method for assertion based on a parser
  */
-abstract class AssertParserTemplate extends \PHPUnit\Framework\Constraint\Constraint
+abstract class AssertParserTemplate extends Constraint
 {
 
     /**
@@ -20,10 +23,10 @@ abstract class AssertParserTemplate extends \PHPUnit\Framework\Constraint\Constr
      */
     protected function matches($other): bool
     {
-        $refl = new \ReflectionClass($other);
+        $refl = new ReflectionClass($other);
         $filename = $refl->getFileName();
 
-        $parser = new PhpParser\Parser(new PhpParser\Lexer());
+        $parser = (new ParserFactory)->create(ParserFactory::ONLY_PHP7);
         $traverser = new PhpParser\NodeTraverser();
         $visitor = $this->createVisitor();
         $traverser->addVisitor(new \PhpParser\NodeVisitor\NameResolver());
